@@ -45,3 +45,17 @@ axes[2].set_title('COVID % of Total Deaths')
 
 plt.tight_layout()
 plt.show()
+sns.set(style="whitegrid")
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+sns.scatterplot(data=df_cleaned, x='COVID_deaths', y='crude_COVID_rate', ax=axes[0], color='teal')
+axes[0].set_title('Deaths vs Crude Rate')
+
+sns.scatterplot(data=df_cleaned, x='COVID_deaths', y='COVID_pct_of_total', ax=axes[1], color='purple')
+axes[1].set_title('Deaths vs % of Total')
+
+sns.scatterplot(data=df_cleaned, x='crude_COVID_rate', y='COVID_pct_of_total', ax=axes[2], color='orange')
+axes[2].set_title('Crude Rate vs % of Total')
+
+plt.tight_layout()
+plt.show()
