@@ -59,3 +59,41 @@ axes[2].set_title('Crude Rate vs % of Total')
 
 plt.tight_layout()
 plt.show()
+
+# Compute the correlation matrix
+correlation = df_cleaned[['COVID_deaths', 'crude_COVID_rate', 'COVID_pct_of_total']].corr()
+
+# Set the plot style
+sns.set(style="white")
+
+# Plot the heat map
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation, annot=True, cmap='coolwarm', fmt=".2f", square=True)
+plt.title("Correlation Heatmap")
+plt.show()
+
+
+
+if 'footnote' in df.columns:
+    df.drop(columns=['footnote'], inplace=True)
+
+# Convert date columns to datetime
+df['data_period_start'] = pd.to_datetime(df['data_period_start'])
+df['data_period_end'] = pd.to_datetime(df['data_period_end'])
+df['data_as_of'] = pd.to_datetime(df['data_as_of'])
+
+# Drop rows with missing key values
+df_cleaned = df.dropna(subset=['COVID_deaths', 'crude_COVID_rate', 'COVID_pct_of_total'])
+
+# Fill remaining numeric missing values with median
+numeric_cols = df_cleaned.select_dtypes(include='number').columns
+df_cleaned[numeric_cols] = df_cleaned[numeric_cols].fillna(df_cleaned[numeric_cols].median())
+
+# Pairplot for key numerical variables
+sns.pairplot(df_cleaned[["COVID_deaths", "crude_COVID_rate", "COVID_pct_of_total"]], kind="scatter", plot_kws={"s": 50, "color": "orange"})
+plt.suptitle("Pairplot of COVID-19 Metrics", y=1.02)
+plt.show()
+
+
+
+
