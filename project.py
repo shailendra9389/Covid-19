@@ -16,7 +16,8 @@ print(df.info())
 print("\n----- DESCRIBE (Numerical Stats) -----")
 print(df.describe())
 
-# Drop unnecessary column
+# Drop unnecessary column nad rows
+
 if 'footnote' in df.columns:
     df.drop(columns=['footnote'], inplace=True)
 
