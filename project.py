@@ -33,7 +33,7 @@ df_cleaned = df.dropna(subset=['COVID_deaths', 'crude_COVID_rate', 'COVID_pct_of
 numeric_cols = df_cleaned.select_dtypes(include=[np.number]).columns
 df_cleaned[numeric_cols] = df_cleaned[numeric_cols].fillna(df_cleaned[numeric_cols].median())
 
-# Histograms
+# Histograms code
 sns.set(style="whitegrid")
 fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 sns.histplot(df_cleaned['COVID_deaths'], bins=30, kde=True, ax=axes[0], color='skyblue')
@@ -48,16 +48,16 @@ axes[2].set_title('Crude COVID Death Rate')
 plt.tight_layout()
 plt.show()
 
-# Boxplots
+# Boxplots code 
 fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 sns.boxplot(y=df_cleaned['COVID_deaths'], ax=axes[0], color='lightblue')
 axes[0].set_title('COVID-19 Deaths')
 
 sns.boxplot(y=df_cleaned['crude_COVID_rate'], ax=axes[1], color='lightgreen')
-axes[1].set_title('Crude COVID Rate')
+axes[1].set_title('Crude COVID Rate') #this is a box plot
 
 sns.boxplot(y=df_cleaned['COVID_pct_of_total'], ax=axes[2], color='lightcoral')
-axes[2].set_title('COVID % of Total Deaths')
+axes[2].set_title('COVID % of Total Deaths')  # title
 
 plt.tight_layout()
 plt.show()
