@@ -29,7 +29,7 @@ df['data_as_of'] = pd.to_datetime(df['data_as_of'])
 # Drop rows with missing key values
 df_cleaned = df.dropna(subset=['COVID_deaths', 'crude_COVID_rate', 'COVID_pct_of_total'])
 
-# Fill numeric NaNs with median
+# Fill numeric NaNs with median values
 numeric_cols = df_cleaned.select_dtypes(include=[np.number]).columns
 df_cleaned[numeric_cols] = df_cleaned[numeric_cols].fillna(df_cleaned[numeric_cols].median())
 
